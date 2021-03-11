@@ -28,19 +28,22 @@ void input_n_array(int testCases, Matrix matrices[testCases]){
 int check_one_relation(Matrix *matrix) {
     for(int i=0;i<matrix->size;i++) {
         for(int j=0;j<matrix->size;j++){
-            for(int k=0;k<matrix->size;k++){
-                if(matrix->array[i][j] && matrix->array[j][k])
-                    if(! matrix->array[i][k]) {
-                        matrix->point[0]=i;
-                        matrix->point[1]=j;
-                        matrix->point[2]=k;
-                        return 0;
-                    }
+	        if(matrix->array[i][j]==1)
+                for(int k=0;k<matrix->size;k++){
+                    if(matrix->array[i][j] && matrix->array[j][k])
+                        if(! matrix->array[i][k]) {
+                            matrix->point[0]=i;
+                            matrix->point[1]=j;
+                            matrix->point[2]=k;
+                            return 0;
+                        }
+                }
             }
         }
     }
     return 1;
 }
+
 
 void check_n_relation(int testCases, Matrix matrices[testCases]){
     for(int i=0;i<testCases;i++){
